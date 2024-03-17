@@ -25,3 +25,30 @@
 #container a {
   text-decoration: none;
 }
+
+.group{
+  background: lightblue;
+  border-radius: 10px;
+  padding: 2px 8px;
+  margin-bottom: 20px;
+}
+
+// home.page.scss or global styles file
+
+.my-custom-event {
+  background-color: #f0f0f0; /* Background color */
+  padding: 10px; /* Padding around the event item */
+  margin-bottom: 5px; /* Spacing between event items */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Shadow effect */
+}
+
+.my-custom-event div {
+  font-size: 16px; /* Font size for event title */
+  font-weight: bold; /* Bold font for event title */
+}
+
+.my-custom-event button {
+  margin-top: 5px; /* Spacing between event title and button */
+  font-size: 14px; /* Font size for button */
+}

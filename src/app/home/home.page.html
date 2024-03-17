@@ -1,20 +1,97 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Ionic Calender
     </ion-title>
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="setToday()" fill="clear">
+        Today
+      </ion-button> -->
+      <ion-button (click)="loadEvents()">Load Events</ion-button>
+      <ion-button [disabled]="isToday" (click)="today()">Today</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- <ion-segment [(ngModel)]="calender.mode">
+    <ion-segment-button value="month">
+      Month
+    </ion-segment-button>
+    <ion-segment-button value="week">
+      Week
+    </ion-segment-button>
+    <ion-segment-button value="day">
+      Day
+    </ion-segment-button>
+  </ion-segment>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="3">
+      <ion-button fill="clear" (click)="back()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <h2 class="ion-text-center">
+        {{viewTitle}}
+      </h2>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button fill="clear" (click)="next()">
+        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <calendar
+    [calendarMode]="calender.mode"
+    (onTitleChanged)="viewTitle = $event"
+    [startingDayWeek]="1"
+    [startHour]="10"
+    [endHour]="19"
+    >
+  </calendar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button id="modal" (click)="addEvent()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal #Modal trigger="modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>
+            <div class="ion-text-center">
+              New Event
+            </div>
+          </ion-title>
+          <ion-buttons slot="start">
+            <ion-button fill="clear" (click)="Modal.dismiss()">
+              <ion-icon name="close" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button fill="clear" [disabled]="!newEvent.title" (click)="addEvent()">
+              <ion-icon name="save" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="group">
+          <ion-input [(ngModel)]="newEvent.title" type="text" placeholder="Title" />
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal> -->
+  <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
+    (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" [step]="calendar.step">
+    
+  </calendar>
+  <ng-template #template let-displayEvent="displayEvent">
+    <div class="calendar-event-inner">{{displayEvent.event.title}}</div>
+</ng-template>
+
 </ion-content>
