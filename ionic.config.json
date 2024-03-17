@@ -1,0 +1,7 @@
+{
+  "name": "calenderAppDemo_WithEvents",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
